@@ -1,14 +1,7 @@
-
-
 .section-faq {
      margin-top: 64px;
     margin-bottom: 64px;
 }
-
-.faq-answer ol {
-    padding-left: 24px;
-}
-
 
 .faq-title {
     font-family: var(--second-family);
@@ -20,24 +13,6 @@
     color: var(--color-scheme-1-text);
     margin-bottom: 40px;
 }
-.ac .ac-panel {
-  padding: 0 24px 24px;
-height: ;
-}
-
-
-.ac .ac-trigger {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px;
-  background: transparent;
-
- border: 0;
-  text-align: left;
-  cursor: pointer;
-}
 
 .ac {
   background-color: var(--color-scheme-1-foreground);
@@ -46,8 +21,37 @@ height: ;
   margin-bottom: 16px;
 }
 
+.ac .ac-panel {
+  padding: 0 24px 24px;
+}
 
+.ac .ac-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+ border: 0;
+  text-align: left;
+  cursor: pointer;
+  background-color: var(--color-scheme-1-foreground);
+}
 
+.ac .ac-panel {
+  overflow: hidden;
+}
+
+.ac.js-enabled .ac-panel {
+  visibility: hidden;
+}
+
+.ac.is-active .ac-panel {
+  visibility: visible;
+}
+
+.faq-answer ol {
+    padding-left: 24px;
+}
 
 
 .faq-question {
@@ -83,10 +87,6 @@ height: ;
     color: var(--color-scheme-1-text);
     margin-bottom: 10px;
 }
-
-
-
-
 
 
 .list-decoration{
@@ -128,14 +128,3 @@ height: ;
 }
 
 
-.ac .ac-panel {
-  overflow: hidden;
-}
-
-.ac.js-enabled .ac-panel {
-  visibility: hidden;
-}
-
-.ac.is-active .ac-panel {
-  visibility: visible;
-}
