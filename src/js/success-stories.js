@@ -5,6 +5,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import sprite from '../img/icons.svg';
 
 
 async function fetchFeedbacks() {
@@ -27,7 +28,7 @@ function getStarsHTML(rate) {
       stars += `
         <li class="star">
           <svg width="24" height="24">
-            <use href="/img/icons.svg#star-filled"></use>
+            <use href="${sprite}#star-filled"></use>
           </svg>
         </li>
       `;
@@ -35,7 +36,7 @@ function getStarsHTML(rate) {
       stars += `
         <li class="star">
           <svg width="24" height="24">
-            <use href="/img/icons.svg#star-half"></use>
+            <use href="${sprite}#star-half"></use>
           </svg>
         </li>
       `;
@@ -43,7 +44,7 @@ function getStarsHTML(rate) {
       stars += `
         <li class="star">
           <svg width="24" height="24">
-            <use href="/img/icons.svg#star-outline"></use>
+            <use href="${sprite}#star-outline"></use>
           </svg>
         </li>
       `;
