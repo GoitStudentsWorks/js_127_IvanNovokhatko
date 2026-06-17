@@ -23,9 +23,10 @@ const petsList = document.querySelector(".pets-section__pets-list");
 const body = document.querySelector("body");
 const animalModal = document.querySelector(".animal-modal");
 const animalBackdrop = document.querySelector(".animal-modal-backdrop");
+const orderModalBtn = document.querySelector(".modal-button");
 let animalCard;
 const limit = 1;
-let categoryId;
+let animalId;
 
 
 // Other Functions
@@ -84,7 +85,7 @@ const renderAnimal = () => {
 const onFindOutMoreClick = (e) => {
     if (!e.target.classList.contains('pets-list__button')) { return };
 
-    categoryId = e.target.dataset.id;
+    animalId = e.target.dataset.id;
     animalBackdrop.classList.add("is-open");
     body.classList.add("no-scroll")
 
@@ -103,6 +104,7 @@ const onTakeMeHomeClick = (e) => {
     orderModal.classList.add('is-open');
     closeModal();
     body.classList.add("no-scroll");
+  orderModalBtn.dataset.id = animalId;
 }
 
 
