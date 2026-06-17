@@ -20,6 +20,7 @@ import axios from "axios";
 
 const filterList = document.querySelector(".pets-section__filter-list");
 const petsList = document.querySelector(".pets-section__pets-list");
+const loadMoreBtn = document.querySelector(".pets-section__button");
 const myCustomOrder = ['Собаки', 'Коти', 'Кролики', 'Гризуни', 'Птахи', 'Тварини з особливими потребами', 'Терміново шукають дім'];
 let limit = 8;
 let categoryId;
@@ -66,7 +67,7 @@ const renderAnimals = (animals) => {
       <p class="pets-list__descriprion">
         ${animal.shortDescription}
       </p>
-      <button class="pets-list__button" type="button" data-id=${animal._id}>Дізнатись більше</button>
+      <button class="pets-list__button" type="button" data-id=${animal._id} data-description="${animal.description}" data-health="${animal.healthStatus}" data-behavior="${animal.behavior}">Дізнатись більше</button>
     </li>`;
     })
         .join("");
@@ -105,7 +106,9 @@ const onDocumentContentLoaded = (e) => {
 };
 
 const onButtonClick = (e) => {
-    if (!e.target.classList.contains('filter-list__button')) { return };
+  if (!e.target.classList.contains('filter-list__button')) { return };
+  
+  loadMoreBtn.classList.remove("is-hidden");
 
     filterList.querySelectorAll('.filter-list__button').forEach(button => {
         button.classList.remove('is-active');
@@ -123,25 +126,27 @@ const onButtonClick = (e) => {
 
     if (categoryId === "all") {
         getAnimals(
-        {
-        params: {
+        {params: {
           limit: limit,
-        },
-      }
-    );
+        },})
+        .catch(error => {
+            console.log(error);
+        });
     } else {
         getAnimals(
-        {
-        params: {
+        {params: {
           limit: limit,
           categoryId: categoryId,
-        },
-      }
-    );
+        },})
+        .catch(error => {
+                console.log(error);
+        });;
     };
 };
 
 const onWindowResize = (e) => {
+  loadMoreBtn.classList.remove("is-hidden");
+  
     if (window.matchMedia("(min-width: 1440px)").matches) {
         limit = 9;
 } else {
@@ -150,21 +155,21 @@ const onWindowResize = (e) => {
 
     if (categoryId === "all") {
         getAnimals(
-        {
-        params: {
+        {params: {
           limit: limit,
-        },
-      }
-    );
+        },})
+        .catch(error => {
+            console.log(error);
+        });
     } else {
         getAnimals(
-        {
-        params: {
+        {params: {
           limit: limit,
           categoryId: categoryId,
-        },
-      }
-    );
+        },})
+        .catch(error => {
+                console.log(error);
+        });;
     };
 };
 
