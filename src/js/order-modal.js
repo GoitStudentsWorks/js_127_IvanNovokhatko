@@ -1,4 +1,6 @@
 import axios from 'axios';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 //DOM elements=========================================
 
@@ -11,7 +13,7 @@ const phone = document.querySelector('[name="user-phone"]');
 const phoneErr = phone.nextElementSibling;
 const comment = document.querySelector('[name="user-comment"]');
 const commentErr = comment.nextElementSibling;
-const takeHomeBTN = document.querySelector('.take-home-btn'); //перевірити чи знаходить
+const submitBTN = document.querySelector('.modal-button'); //перевірити чи знаходить
 
 //Global================================================
 
@@ -24,6 +26,7 @@ const url = 'https://paw-hut.b.goit.study/api/orders';
 
 function closeModal() {
   overlay.classList.remove('is-open');
+  document.body.classList.remove('no-scroll');
 }
 
 closeBTN.addEventListener('click', closeModal);
@@ -50,9 +53,8 @@ form.addEventListener('submit', async event => {
   if (userComment === '') {
     userComment = 'коментар відсутній';
   }
-  const petID = takeHomeBTN.dataset.id; //перевірити чи знаходить
+  const petID = submitBTN.dataset.id; //перевірити чи знаходить
 
-  console.log(userName, userPhone, userComment);
   validateName(userName);
   validatePhone(userPhone);
   validateComment(userComment);
@@ -66,12 +68,16 @@ form.addEventListener('submit', async event => {
     };
     try {
       const res = await axios.post(url, order);
-      console.log(
-        `Ваше замовлення успішно збережено під номером ${res.data.orderNum}` // замінити на пуш сповіщення
-      );
-      console.log(res.data);
+
+      iziToast.success({
+        title: '',
+        message: `Ваше замовлення успішно збережено під номером ${res.data.orderNum}`,
+      });
     } catch (error) {
-      console.log('Вибачте сталася помилка при надсиланні запиту'); // замінити на пуш сповіщення
+      iziToast.error({
+        title: '',
+        message: 'Вибачте сталася помилка при надсиланні запиту',
+      });
     } finally {
       event.target.reset();
       closeModal();
@@ -91,7 +97,7 @@ function validateName(userName) {
   if (userName === '') {
     setError(`Поле "Ім'я" обов'язкове до заповнення`);
   } else if (userName.length > 32) {
-    setError(`Довжина ім'я не повинна перевищувати 32 символи`);
+    setError(`Ім'я не повинно перевищувати 32 символи`);
   } else if (/\d/.test(userName)) {
     setError(`Ім'я не повинно містити цифр`);
   } else {
@@ -107,7 +113,7 @@ function validatePhone(userPhone) {
   if (!pattern.test(userPhone)) {
     phoneErr.classList.add('show-error');
     phone.classList.add('error-border');
-    phoneErr.innerHTML = `Заповніть поле "Телефон" у форматі 380XXXXXXXXX`;
+    phoneErr.innerHTML = `Введіть телефон у форматі 380XXXXXXXXX`;
     phoneIsValid = false;
   } else {
     phoneErr.classList.remove('show-error');
@@ -121,7 +127,7 @@ function validateComment(userComment) {
   if (userComment.length > 500) {
     commentErr.classList.add('show-error');
     comment.classList.add('error-border');
-    commentErr.innerHTML = `Довжина тексту не повинна перевищувати 500 символів`;
+    commentErr.innerHTML = `Коментар не повинен перевищувати 500 символів`;
     commentIsValid = false;
   } else {
     commentErr.classList.remove('show-error');
