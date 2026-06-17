@@ -63,16 +63,14 @@
 
 .about-us .swiper-pagination {
     position: static;
-
     display: flex;
     align-items: center;
 
-    width: 60px;
+    width: auto;
     height: 8px;
-
-    gap: 6px;
-
+    gap: 8px;
     margin: 0;
+    transform: translateY(-8px);
 }
 
 /* ==================== NAVIGATION ==================== */
