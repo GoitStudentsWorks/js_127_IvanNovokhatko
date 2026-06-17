@@ -149,21 +149,6 @@
 
 /* ==================== SWIPER ==================== */
 
-.about-us .swiper-pagination {
-    position: static;
-
-    display: flex;
-    align-items: center;
-
-    width: 60px;
-    height: 8px;
-
-    gap: 8px;
-    margin: 0;
-
-    transform: translateY(-8px);
-}
-
 .about-us .swiper-pagination-bullet {
     width: 6px;
     height: 6px;
