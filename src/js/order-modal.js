@@ -73,6 +73,7 @@ form.addEventListener('submit', async event => {
         title: '',
         message: `Ваше замовлення успішно збережено під номером ${res.data.orderNum}`,
       });
+      closeModal();
     } catch (error) {
       iziToast.error({
         title: '',
@@ -80,7 +81,6 @@ form.addEventListener('submit', async event => {
       });
     } finally {
       event.target.reset();
-      closeModal();
     }
   }
 });
