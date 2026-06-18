@@ -51,7 +51,7 @@ const renderAnimal = () => {
     </button>
 
     <div class="animal-modal__wrapper">
-      <img class="animal-modal__image" src="${animalCard.querySelector(".pets-list__image").src}" alt="dog" />
+      <img class="animal-modal__image" src="${animalCard.querySelector(".pets-list__image").src}" alt="${animalCard.querySelector(".pets-list__name").textContent}" />
 
       <div class="animal-modal__content-wrapper">
         <p class="animal-modal__species">${animalCard.querySelector(".pets-list__species").textContent}</p>
